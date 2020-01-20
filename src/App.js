@@ -8,12 +8,16 @@ function App() {
   const [homeScore, setHome] = useState(0);
   const [awayScore, setAway] = useState(0);
 
+  function incrementScore(setter, increment) {
+    return () => setter(prevValue => prevValue + increment);
+  }
+
   function fieldGoal(setter) {
-    return () => setter(prevValue => prevValue + 3);
+    return incrementScore(setter, 3);
   }
 
   function touchdown(setter) {
-    return () => setter(prevValue => prevValue + 7);
+    return incrementScore(setter, 7);
   }
 
   return (
